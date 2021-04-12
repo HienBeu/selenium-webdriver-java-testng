@@ -39,6 +39,15 @@ public class Topic_04_Check_Environment {
 	public void TC_03_LoginFormDisplayed() {
 		// Login form displayed
 		Assert.assertTrue(driver.findElement(By.xpath("//form[@name='frmLogin']")).isDisplayed());
+		
+		//Check login form visible
+	}
+	
+	@Test
+	public void TC_04_ValidatePageTitle() {
+		// Login Page title
+		String loginPageTitle = driver.getTitle();
+		Assert.assertEquals(loginPageTitle, "Guru99 Bank Home Page");
 	}
 
 	@AfterClass
