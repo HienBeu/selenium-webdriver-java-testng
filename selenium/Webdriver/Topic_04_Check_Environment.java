@@ -44,10 +44,8 @@ public class Topic_04_Check_Environment {
 	}
 	
 	@Test
-	public void TC_04_ValidatePageTitle() {
-		// Login Page title
-		String loginPageTitle = driver.getTitle();
-		Assert.assertEquals(loginPageTitle, "Guru99 Bank Home Page");
+	public void TC_04() {
+		//...
 	}
 
 	@AfterClass
