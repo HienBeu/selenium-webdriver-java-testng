@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_04_Check_Environment {
+public class Topic_02_Xpath_Css_Part_I {
 	WebDriver driver;
 
 	@BeforeClass
