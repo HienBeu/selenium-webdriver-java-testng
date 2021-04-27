@@ -109,7 +109,7 @@ public class Topic_03_Xpath_Css_Part_I_Locator {
 			driver.findElement(By.xpath(".//input[contains(@class,'search-box-text')]")).sendKeys("Macbook");
 			sleepInSecond(3);
 
-			driver.findElement(By.xpath("//input[@name = 'Email']")).sendKeys("nguyenhienit94@gmail.com");
+			driver.findElement(By.xpath("//input[@name ='Email']")).sendKeys("nguyenhienit94@gmail.com");
 			sleepInSecond(3);
 
 			driver.findElement(By.xpath(".//a[text()='login')]")).click();
