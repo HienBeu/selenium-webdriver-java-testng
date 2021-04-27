@@ -112,7 +112,7 @@ public class Topic_03_Xpath_Css_Part_I_Locator {
 			driver.findElement(By.xpath("//input[@name ='Email']")).sendKeys("nguyenhienit94@gmail.com");
 			sleepInSecond(3);
 
-			driver.findElement(By.xpath(".//a[text()='login')]")).click();
+			driver.findElement(By.xpath("//a[text()='Log in')]")).click();
 			sleepInSecond(3);
 
 			driver.findElement(By.xpath("//a[contains(text(),'Recently viewed')]")).click();
@@ -123,11 +123,12 @@ public class Topic_03_Xpath_Css_Part_I_Locator {
 		public void afterClass() {
 			driver.quit();
 			}
+		
 			public void sleepInSecond(long timeoutInSecond) {
 			try {
-			Thread.sleep(timeoutInSecond * 1000);
+			   Thread.sleep(timeoutInSecond * 1000);
 			} catch (InterruptedException e) {
-			e.printStackTrace();
+			   e.printStackTrace();
 			}
 			}
-}
+			}
