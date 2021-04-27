@@ -2,12 +2,18 @@ package Webdriver;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+//import org.junit.AfterClass;
+//import org.junit.BeforeClass;
+//import org.junit.Test;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class Topic_03_Xpath_Css_Part_I_Locator {
 //Biến driver đại diện cho Selenium WebDriver
@@ -94,25 +100,24 @@ public class Topic_03_Xpath_Css_Part_I_Locator {
 			driver.findElement(By.cssSelector("input[name='Email']")).sendKeys("nguyenhienit@gmail.com");
 			sleepInSecond(3);
 
-			driver.findElement(By.cssSelector("a[herf*='login']")).click();
+			driver.findElement(By.cssSelector("a[href*='login']")).click();
 			sleepInSecond(3);
 			}
 		
 		@Test
 		public void TC_08_Xpath() {
 			driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
+
+			driver.findElement(By.xpath("//*[@id='FirstName']")).sendKeys("Automation FC");
 			sleepInSecond(3);
 
-			driver.findElement(By.xpath(".//*[@id='FirstName']")).sendKeys("Automation FC");
+			driver.findElement(By.xpath("//input[contains(@class,'search-box-text')]")).sendKeys("Macbook");
 			sleepInSecond(3);
 
-			driver.findElement(By.xpath(".//input[contains(@class,'search-box-text')]")).sendKeys("Macbook");
+			driver.findElement(By.xpath("//input[@name='Email']")).sendKeys("nguyenhienit94@gmail.com");
 			sleepInSecond(3);
 
-			driver.findElement(By.xpath("//input[@name ='Email']")).sendKeys("nguyenhienit94@gmail.com");
-			sleepInSecond(3);
-
-			driver.findElement(By.xpath("//a[text()='Log in')]")).click();
+			driver.findElement(By.xpath("//a[@class='ico-login']")).click();
 			sleepInSecond(3);
 
 			driver.findElement(By.xpath("//a[contains(text(),'Recently viewed')]")).click();
