@@ -20,11 +20,13 @@ public class Topic_04_Normal_Class {
 	}
 	
 	public static void main(String[] args) {
-		WebDriver driver;
-		driver.get("");
+		WebDriver driver = null;
+		driver.get("https://www.facebook.com/");
 		
-		String homePageUrl = driver.getCurrentUrl();		
+		String homePageUrl = driver.getCurrentUrl();
+		
 		Topic_04_Normal_Class topic = new Topic_04_Normal_Class();
 		topic.setFullName("Nguyen Van Toan");
+		//instance = dai dien cho kieu du lieu (Class/Interface/...)
 	}
 }
