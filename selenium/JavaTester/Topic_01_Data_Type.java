@@ -44,7 +44,6 @@ String[] studentName = {"An","Hoa","Thương"};
 int[] studentEbook = { 5, 10, 7 };
 
 //Class(Normal Class)
-Car car = new Car();
 //Abstract Class
 //Interface
 
