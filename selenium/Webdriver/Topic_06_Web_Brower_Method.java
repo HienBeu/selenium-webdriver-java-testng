@@ -30,14 +30,14 @@ public class Topic_06_Web_Brower_Method {
 		//Lay ra duong dan (url) cua page hien tai -> **
 		String localPageUrl = driver.getCurrentUrl();
 		
-		//Lay ra cais title cua page hien tai -> **
+		//Lay ra cai title cua page hien tai -> **
 		driver.getTitle();
 		
 		//Lay toan bo HTML code cua page hien tai
 		driver.getPageSource();
 		
 		
-	// Xu ly muon chuyen  qua 1 tab/ windowns nào đó  ->**
+	    // Xu ly muon chuyen  qua 1 tab/ windowns nào đó  ->**
 		driver.getWindowHandle();
 		driver.getWindowHandles();
 		
