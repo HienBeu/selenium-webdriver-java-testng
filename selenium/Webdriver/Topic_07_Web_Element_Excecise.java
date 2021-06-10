@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class Topic_07_Web_Element_Excecise {
 	// Khai báo biến (Declare)
 	WebDriver driver;
-	String firstName, lastName, emailAddress, passWord;
+	String firstName, lastName, emailAddress, passWord, fullName;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -25,6 +25,7 @@ public class Topic_07_Web_Element_Excecise {
 		// Khởi tạo data test
 		firstName = "Osama";
 		lastName = "Bin Laden";
+		fullName = "firstName" + "" + "lastName";
 		emailAddress = "osama" + generateEmail();
 		passWord = "123456";
 	}
@@ -52,7 +53,15 @@ public class Topic_07_Web_Element_Excecise {
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText(), "Thank you for registering with Main Website Store.");
 		
 		// Dùng hàm isDisplay để kiểm tra
-		Assert.assertEquals(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(String(),'daoconhoa@gmail.com')]")).isDisplay;
+		driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + fullName + "')]")).isDisplayed();
+		driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + emailAddress + "')]")).isDisplayed();
+		
+		//Dùng hàm getText
+		String contactInformation = driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p")).getText();
+		System.out.println(contactInformation);
+		
+		Assert.assertTrue(contactInformation.contains(fullName));
+		Assert.assertTrue(contactInformation.contains(emailAddress));
 	}
 
 	@Test
