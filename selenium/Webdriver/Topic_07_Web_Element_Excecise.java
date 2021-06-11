@@ -14,28 +14,29 @@ import org.testng.annotations.Test;
 public class Topic_07_Web_Element_Excecise {
 	// Khai báo biến (Declare)
 	WebDriver driver;
-	String firstName, lastName, emailAddress, passWord, fullName;
+	String firstName, lastName, emailAddress, password, fullName;
 
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://live.demoguru99.com/");
 
 		// Khởi tạo data test
 		firstName = "Osama";
 		lastName = "Bin Laden";
-		fullName = "firstName" + "" + "lastName";
+		fullName = firstName + " " + lastName;
 		emailAddress = "osama" + generateEmail();
-		passWord = "123456";
+		password = "123456";
 	}
 
 	@Test
-	public void TC_01_Creat_New_account() {
+	public void TC_01_Create_New_Account() {
 		driver.get("http://live.demoguru99.com/");
 
 		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
-
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 
 		driver.findElement(By.id("firstname")).sendKeys(firstName);
@@ -44,17 +45,21 @@ public class Topic_07_Web_Element_Excecise {
 
 		driver.findElement(By.id("email_address")).sendKeys(emailAddress);
 
-		driver.findElement(By.id("password")).sendKeys(passWord);
+		driver.findElement(By.id("password")).sendKeys(password);
 
-		driver.findElement(By.id("confirmation")).sendKeys(passWord);
+		driver.findElement(By.id("confirmation")).sendKeys(password);
 
+		sleepInSecond(30);
+		
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
+		
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText(), "Thank you for registering with Main Website Store.");
 		
 		// Dùng hàm isDisplay để kiểm tra
-		driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + fullName + "')]")).isDisplayed();
-		driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + emailAddress + "')]")).isDisplayed();
+		Assert.assertTrue(driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + fullName + "')]")).isDisplayed());
+		sleepInSecond(3);
+		Assert.assertTrue(driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p[contains(string(),'" + emailAddress + "')]")).isDisplayed());
 		
 		//Dùng hàm getText
 		String contactInformation = driver.findElement(By.xpath("//h3[text()= 'Contact Information']/parent::div/following-sibling::div/p")).getText();
@@ -62,12 +67,20 @@ public class Topic_07_Web_Element_Excecise {
 		
 		Assert.assertTrue(contactInformation.contains(fullName));
 		Assert.assertTrue(contactInformation.contains(emailAddress));
+		
+		driver.findElement(By.cssSelector(".skip-account")).click();
+		
+		driver.findElement(By.cssSelector("//a[@title = 'Log Out']")).click();
+		
 	}
-
-	@Test
-	public void TC_01_Classname() {
-
-	}
+	
+	//@Test
+	//public void TC_02_Login_With_Valid_Email_And_Password() {
+	//	driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		
+	//	driver.findElement(By.id("#email")).sendKeys("");
+		
+	//}
 
 	@AfterClass
 	public void afterClass() {
