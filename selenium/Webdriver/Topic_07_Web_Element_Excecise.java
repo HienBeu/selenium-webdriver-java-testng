@@ -70,18 +70,32 @@ public class Topic_07_Web_Element_Excecise {
 		
 		driver.findElement(By.cssSelector(".skip-account")).click();
 		
-		driver.findElement(By.cssSelector("//a[@title = 'Log Out']")).click();
+		driver.findElement(By.cssSelector("a[title = 'Log Out']")).click();
 		
 	}
 	
-	//@Test
-	//public void TC_02_Login_With_Valid_Email_And_Password() {
-	//	driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+	@Test
+	public void TC_02_Login_With_Valid_Email_And_Password() {
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
 		
-	//	driver.findElement(By.id("#email")).sendKeys("");
+		driver.findElement(By.cssSelector("#email")).sendKeys(emailAddress);
+		driver.findElement(By.cssSelector("#pass")).sendKeys(password);
+		driver.findElement(By.xpath("//button[@title='Login']")).click();
 		
-	//}
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(), "Hello, " + fullName +  "!");
+	}
 
+	public void TC_03_isDisplayed() {
+		
+	}
+	
+	public void TC_03_selected() {
+		
+	}
+	
+	public void TC_03_Enable() {
+		
+	}
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
