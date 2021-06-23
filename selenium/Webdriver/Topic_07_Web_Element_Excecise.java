@@ -26,10 +26,12 @@ public class Topic_07_Web_Element_Excecise {
 		lastName = "Bin Laden";
 		fullName = firstName + " " + lastName;
 		emailAddress = "osama" + generateEmail();
+		//osama5135@gmail.com
+		//osama5136@gmail.com
 		password = "123456";
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Create_New_Account() {
 		driver.get("http://live.demoguru99.com/");
 
@@ -74,7 +76,7 @@ public class Topic_07_Web_Element_Excecise {
 		
 	}
 	
-	@Test
+	//@Test
 	public void TC_02_Login_With_Valid_Email_And_Password() {
 		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
 		
@@ -85,20 +87,52 @@ public class Topic_07_Web_Element_Excecise {
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(), "Hello, " + fullName +  "!");
 	}
 
-	public void TC_03_isDisplayed() {
+	@Test
+	public void TC_03_Displayed_Function() {
+		driver.get("https://automationfc.github.io/basic-form/index.html");
+		//Hàm kiểm tra điều kiện
+		//Nếu đk đúng thì mới vào bên trong hàm if
+		//Sai thì không vào
+		if(driver.findElement(By.id("mail")).isDisplayed()) {
+			driver.findElement(By.id("mail")).sendKeys("Automation FC");
+			System.out.println("Mail textbox is displayed");
+		}else {
+			System.out.println("Mail textbox is not displayed (undisplayed)");
+		}
+		
+		if(driver.findElement(By.id("edu")).isDisplayed()) {
+			driver.findElement(By.id("edu")).sendKeys("Automation FC");
+			System.out.println("Education textarea is displayed");
+		}else {
+			System.out.println("Education textarea is not displayed (undisplayed)");
+		}
+		
+		if(driver.findElement(By.id("under_18")).isDisplayed()) {
+			driver.findElement(By.id("under_18")).click();
+			System.out.println("Radio button 'under 18' is displayed");
+		}else {
+			System.out.println("Radio button 'under 18' is not displayed (undisplayed)");
+		}
+		
+		}
+		
+	
+		//if-else
+		//Đúng vào if - sai vào  else
+		
+	
+	//@Test
+	public void TC_04_Selected() {
 		
 	}
 	
-	public void TC_03_selected() {
-		
-	}
-	
-	public void TC_03_Enable() {
+	//@Test
+	public void TC_05_Enable() {
 		
 	}
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
 	
 	public String generateEmail() {
@@ -106,6 +140,16 @@ public class Topic_07_Web_Element_Excecise {
 		return rand.nextInt(9999) + "@email.vn";
 	}
 	
+	public boolean isElementDisplayed(By by) {
+		if(driver.findElement(by).isDisplayed()) {
+			System.out.println(by + "is displayed");
+			return true;
+		} else {
+			System.out.println(by + "is displayed");
+			return false;
+		}
+		
+	}
 	public void sleepInSecond(long timeoutInSecond) {
 		try {
 		   Thread.sleep(timeoutInSecond * 1000);
