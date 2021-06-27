@@ -241,7 +241,7 @@ public class Topic_07_Web_Element_Excecise {
 		
 		//All criteria
 		driver.findElement(passwordTextbox).clear();
-		driver.findElement(passwordTextbox).sendKeys("automation123***");
+		driver.findElement(passwordTextbox).sendKeys("Automation123***");
 		sleepInSecond(2);
 		
 		Assert.assertFalse(isElementDisplayed(lowerCaseCompleted));
