@@ -182,6 +182,10 @@ public class Topic_08_Textbox_TextArea {
 	public void TC_06_Update() {
 		
 	}
+	@Test
+	public void TC_07_Update() {
+		
+	}
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
