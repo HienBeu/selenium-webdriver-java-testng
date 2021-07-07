@@ -1,11 +1,15 @@
 package Webdriver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -17,6 +21,7 @@ public class Topic_09_Default_DropdownList {
 	WebDriver driver;
 	Select select;
 	JavascriptExecutor jsExecutor;
+	List<String> expectedItemItext;
 	String firstName, lastName, emailAddress, companyName, day, month, year;
 
 	@BeforeClass
@@ -24,22 +29,25 @@ public class Topic_09_Default_DropdownList {
 		driver = new FirefoxDriver();
 		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		firstName = "AutomationFC";
+		
+		firstName = "Automation";
 		lastName = "FC1";
 		companyName = "Viet nam";
 		emailAddress = "autofc" + generateEmail();
 		day="10";
 		month="April"; 
 		year ="1915";
+		expectedItemItext = new ArrayList<String>(Arrays.asList("Month","January","February","March","April","May","June","July","August","September","October","November","December"));
+		//expectedItemItext = new ArrayList<String>(Arrays.asList("5","6"));
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Nopcommerce() {
 		driver.get("https://demo.nopcommerce.com/");
 		driver.findElement(By.className("ico-register")).click();
 		sleepInSecond(2);
-		driver.findElement(By.id("FirstName")).sendKeys("firstName");
-		driver.findElement(By.id("LastName")).sendKeys("lastName");
+		driver.findElement(By.id("FirstName")).sendKeys(firstName);
+		driver.findElement(By.id("LastName")).sendKeys(lastName);
 		
 		// Chọn item trong dropdown
 		select = new Select(driver.findElement(By.name("DateOfBirthDay")));
@@ -61,6 +69,14 @@ public class Topic_09_Default_DropdownList {
 		//Verify dropdown này không chọn nhiều item cùng lúc. Nếu chọn được là assertTrue
 		//Assert.assertTrue(select.isMultiple());
 		
+		
+		//Thực hiện chọn nhiều giá trị trong dropdownlist
+		//List<String> actualItemsText = new ArrayList<>();
+		//List<WebElement> itemsSelected = select.getAllSelectedOptions();
+		//for (WebElement item : itemsSelected) {
+			// actualItemsText.add(item.getText());
+			//}
+		 
 		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
 		select.selectByVisibleText(month);
 		Assert.assertEquals(select.getFirstSelectedOption().getText(), month);
@@ -98,7 +114,24 @@ public class Topic_09_Default_DropdownList {
 		Assert.assertEquals(select.getFirstSelectedOption().getText(), year);
 	
 	}
-
+	
+	@Test
+	public void TC_02_() {
+		driver.get("https://demo.nopcommerce.com/");
+		
+		driver.findElement(By.className("ico-register")).click();
+		
+		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+		
+		List<WebElement> allItems = select.getOptions();
+		List<String> actualItemsText = new ArrayList<>();
+		//Duyệt qua tất cả item đang có trong list
+		for (WebElement item : allItems) {
+			actualItemsText.add(item.getText());
+		}
+		Assert.assertEquals(expectedItemItext, actualItemsText);
+		
+	}
 
 	@AfterClass
 	public void afterClass() {
