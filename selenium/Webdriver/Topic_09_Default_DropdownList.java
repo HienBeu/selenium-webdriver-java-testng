@@ -16,7 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+//Nếu là default dropdown thì  hiển thị select - option 
 public class Topic_09_Default_DropdownList {
 	WebDriver driver;
 	Select select;
